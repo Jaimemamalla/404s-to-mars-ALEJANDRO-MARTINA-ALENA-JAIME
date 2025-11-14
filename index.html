@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 – Transmisión Perdida</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="assets/images/ufo_3137567.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="terminal-wrapper">
+    <section class="terminal-frame" aria-label="404 - Transmission Lost">
+      <header class="terminal-bar">
+        <div class="dots">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+        </div>
+        <p class="terminal-title">TERMINAL DE MISIÓN MARTE — CANAL 404</p>
+      </header>
+
+      <div class="terminal-screen" id="terminalScreen">
+        <div class="scanline" aria-hidden="true"></div>
+        <div class="noise-overlay" aria-hidden="true"></div>
+       
+          <div class="content-inner">
+          <p class="terminal-header">
+            <span>Houston:</span> tenemos un <span>404</span>... transmisión interrumpida.
+          </p>
+
+          <!-- aquí el glitch -->
+          <h1 class="big-404 glitch" data-text="404">404</h1>
+
+          <p class="subheading">La página que intentas alcanzar se ha desviado hacia el espacio profundo.</p>
+
+          <!-- Aquí se irán escribiendo las líneas -->
+          <div id="terminalLines"></div>
+
+          <div class="prompt-line">
+            <span class="prompt-line__prefix">>_</span>
+            <span id="promptText">Esperando nuevas coordenadas</span>
+            <span class="cursor" id="cursor"></span>
+          </div>
+
+          <div class="actions">
+            <a href="/" class="btn">Vuelve a la base</a>
+            <button class="btn btn-secondary" type="button" onclick="window.history.back()">
+              Retroceder un año-luz
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+ <script src="js/script.js"></script>
+</body>
+</html>
