@@ -1,5 +1,5 @@
 /*  VARIABLES  */
-:root{
+:root {
   --bg:#020308;
   --terminal:#08140f;
   --green:#4dff88;
@@ -11,13 +11,13 @@
   --shadow-glow:0 0 8px rgba(77,255,136,.7), 0 0 24px rgba(47,191,102,.4);
 }
 
-*, *::before, *::after{
+*, *::before, *::after {
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-body{
+body {
   min-height:100vh;
   font-family:var(--font);
   background:
@@ -34,7 +34,7 @@ body{
 }
 
    
-body::before{
+body::before {
   content:"";
   position:fixed;
   inset:-4%;
@@ -45,12 +45,12 @@ body::before{
 }
 
   
-.terminal-wrapper{
+.terminal-wrapper {
   width:100%;
   max-width:1100px;
 }
 
-.terminal-frame{
+.terminal-frame {
   border:1px solid var(--green-dark);
   background:
     repeating-radial-gradient(circle at 0 0,#04110b 0,#04110b 1px,#000 1px,#000 4px);
@@ -63,7 +63,7 @@ body::before{
 }
 
    
-.terminal-frame::before{
+.terminal-frame::before {
   content:"";
   position:absolute;
   inset:0;
@@ -72,7 +72,7 @@ body::before{
   pointer-events:none;
 }
 
-.terminal-frame::after{
+.terminal-frame::after {
   content:"";
   position:absolute;
   inset:-2px;
@@ -86,7 +86,7 @@ body::before{
   opacity:.8;
 }
 
-.terminal-screen{
+.terminal-screen {
   background:rgba(0,0,0,.78);
   border-radius:12px;
   border:1px solid #062015;
@@ -96,22 +96,12 @@ body::before{
   min-height:clamp(280px,50vh,420px);  
 }
 
-.terminal-screen::after{
+.terminal-screen::after {
   content:"";
   position:absolute;
   inset:0;
   mix-blend-mode:screen;
-  background:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(77,255,136,0.1) 2%,
-      transparent 4%,
-      rgba(255,0,80,0.06) 5%,
-      transparent 7%,
-      rgba(0,255,255,0.08) 8%,
-      transparent 10%
-    );
+  background:linear-gradient(to bottom,transparent 0%,rgba(77,255,136,0.1) 2%,transparent 4%,rgba(255,0,80,0.06) 5%,transparent 7%,rgba(0,255,255,0.08) 8%,transparent 10%);
   opacity:.4;
   pointer-events:none;
   animation:glitch-scan 0.35s steps(3,end) infinite;

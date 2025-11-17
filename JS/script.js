@@ -1,6 +1,6 @@
 // js/script.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Texto que se va a escribir (observa que la línea 5 acaba en ": " para añadir el contador después)
+ 
   const lines = [
     "LOG 01: Iniciando secuencia de aterrizaje en Marte…",
     "LOG 02: Fallo crítico: los sistemas principales dejan de responder.",
@@ -10,20 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
     "LOG 06: ERROR 404: Objetivo no encontrado. Transmisión inestable…"
   ];
 
-  // Elementos del DOM
+  //DOM
   const terminal = document.getElementById("terminalLines");
-  const cursor = document.getElementById("cursor"); // lo dejamos por compatibilidad visual
+  const cursor = document.getElementById("cursor");
   const screen = document.getElementById("terminalScreen");
-  const externalTemporizador = document.getElementById("temporizador"); // si existe en HTML lo reutilizamos
+  const externalTemporizador = document.getElementById("temporizador");
 
-  // Tipado
+  //variabels
   let lineIndex = 0;
   let charIndex = 0;
   let currentParagraph = null;
-  const typingSpeed = 30;   // ms por carácter
-  const lineDelay = 450;    // ms entre líneas
+  const typingSpeed = 30;
+  const lineDelay = 450;
 
-  // Contador (10 minutos)
+  //contador
   let tiempoTotalEnSegundos = 10 * 60;
   let intervaloContador = null;
   let countdownStarted = false;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (countdownStarted) return;
     countdownStarted = true;
 
-    // targetElement es un elemento en línea (span / div) dentro de la misma línea
+    
     targetElement.textContent = formatTime(tiempoTotalEnSegundos);
 
     intervaloContador = setInterval(() => {
@@ -48,12 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (tiempoTotalEnSegundos <= 0) {
         clearInterval(intervaloContador);
         targetElement.textContent = "00:00";
-        // Mensaje adicional en la misma línea (opcional)
+        //mensaje extra
         const rem = document.createElement("span");
         rem.textContent = " — TRANSMISIÓN EXPIRADA";
         rem.className = "transmission-expired";
         rem.style.marginLeft = "8px";
-        // si currentParagraph sigue disponible, lo añadimos; si no, lo añadimos al terminal
+        
         if (currentParagraph) currentParagraph.appendChild(rem);
         else terminal.appendChild(rem);
       } else {
@@ -75,27 +75,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const line = lines[lineIndex];
 
-    // Tratamiento especial para la línea 5 (índice 4): añadimos span del contador en la misma línea
+    
     if (lineIndex === 4) {
       if (charIndex < line.length) {
-        // escribimos carácter a carácter la parte de texto que precede al contador
+        //texto escribir
         currentParagraph.textContent += line.charAt(charIndex);
         charIndex++;
         setTimeout(type, typingSpeed);
       } else {
-        // texto de la línea 5 ya escrito -> insertar el contador INLINE
+        // texto linea 5 + temporizador
         let inlineTimerEl = null;
 
         if (externalTemporizador) {
-          // mover / reutilizar el div#temporizador dentro de la misma línea
+          //reloj
           inlineTimerEl = externalTemporizador;
-          // Asegurar que el elemento se comporte inline
+          //inline 100%
           inlineTimerEl.style.display = "inline-block";
           inlineTimerEl.style.marginLeft = "6px";
-          // Si el externalTemporizador estaba en otro sitio, lo movemos aquí
+          //mover reloj 
           currentParagraph.appendChild(inlineTimerEl);
         } else {
-          // crear un span inline para el contador
+          //span contador
           inlineTimerEl = document.createElement("span");
           inlineTimerEl.id = "timerInline";
           inlineTimerEl.className = "countdown-inline";
@@ -104,22 +104,22 @@ document.addEventListener("DOMContentLoaded", () => {
           currentParagraph.appendChild(inlineTimerEl);
         }
 
-        // Iniciar el contador (solo una vez)
+        //contador iniciar
         startCountdown(inlineTimerEl);
 
-        // Preparar siguiente línea
+        //siguiente línea
         lineIndex++;
         charIndex = 0;
         currentParagraph = null;
         setTimeout(type, lineDelay);
       }
 
-      // asegurar auto-scroll
+      //auto scroll
       terminal.parentElement.scrollTop = terminal.parentElement.scrollHeight;
       return;
     }
 
-    // Resto de líneas normales (no especiales)
+    //resto de líneas
     if (charIndex < line.length) {
       currentParagraph.textContent += line.charAt(charIndex);
       charIndex++;
@@ -134,10 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
     terminal.parentElement.scrollTop = terminal.parentElement.scrollHeight;
   }
 
-  // Iniciar escritura
+  //inicio tecto
   type();
 
-  // --- GLITCH aleatorio (igual que antes) ---
+  //GLITCH
   function triggerGlitch() {
     screen.classList.add("screen-glitch");
     screen.classList.add("glitch-lines");
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   randomGlitch();
 
-  // Opcional: limpiar intervalos si el usuario navega fuera de la página
+  //borrar intervalos
   window.addEventListener("beforeunload", () => {
     if (intervaloContador) clearInterval(intervaloContador);
   });
