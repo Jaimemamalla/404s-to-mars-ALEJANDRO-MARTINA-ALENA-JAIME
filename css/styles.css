@@ -384,6 +384,7 @@ body::before {
   font-weight:bolder;
   text-align:center;
   text-shadow:0 0 16px rgba(77,255,136,.9);
+  color:rgb(194, 255, 215);
 }
 
 /* glitch rgb  */
